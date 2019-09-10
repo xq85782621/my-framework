@@ -1,9 +1,11 @@
 package com.统一返回.test;
 
+import com.分布式ID生成.utils.IdWorker;
 import com.统一返回.code.UserCode;
 import com.统一返回.exception.CustomException;
 import com.统一返回.response.PageResult;
 import com.统一返回.response.ResponseResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +15,10 @@ import java.util.ArrayList;
 
 @RestController
 public class TestController {
+
+
+    @Autowired
+    private IdWorker idWorker;
 
 
     @GetMapping("/user/{id}")
@@ -48,6 +54,14 @@ public class TestController {
         return new ResponseResult(pageResult);
 
 
+    }
+
+
+
+    @GetMapping("/user/save")
+    public ResponseResult save() {
+        long l = idWorker.nextId();
+        return new ResponseResult(l);
     }
 
 

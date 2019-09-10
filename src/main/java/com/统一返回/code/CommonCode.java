@@ -20,7 +20,6 @@ public enum CommonCode implements ResultCode {
     SERVER_ERROR(false,99999,"抱歉，系统繁忙，请稍后重试！");
 
 
-
     //操作是否成功
     boolean success;
     //操作代码
