@@ -1,0 +1,17 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: my-framework #指定服务名
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://118.89.165.37:3306/shiro?useUnicode=true&characterEncoding=utf8
+    username: xuqiang
+    password: xq85782621.
+  jpa:
+    database: MySQL
+    show-sql: true
+    open-in-view: true
+  redis:
+    host: 118.89.165.37
+    port: 6379

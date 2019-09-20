@@ -1,4 +1,4 @@
-package com.分布式ID生成.utils;
+package com.utils;
 
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;

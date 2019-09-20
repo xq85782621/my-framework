@@ -4,9 +4,13 @@ import com.google.common.collect.ImmutableMap;
 import com.统一返回.code.CommonCode;
 import com.统一返回.code.ResultCode;
 import com.统一返回.response.ResponseResult;
+import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 统一异常捕获
@@ -22,6 +26,15 @@ public class ExceptionCatch {
     private static ImmutableMap<Class<? extends Throwable>, ResultCode> EXCEPTIONS;
     //定义map的builder对象，去构建ImmutableMap
     protected static ImmutableMap.Builder<Class<? extends Throwable>, ResultCode> builder = ImmutableMap.builder();
+
+
+
+    // 未授权异常
+    @ExceptionHandler(value = AuthorizationException.class)
+    @ResponseBody
+    public ResponseResult error(HttpServletRequest request, HttpServletResponse response, AuthorizationException e) {
+        return new ResponseResult(CommonCode.UN_AUTHORISE);
+    }
 
 
     //捕获CustomException此类异常
